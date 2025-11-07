@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body { font-family: Arial; text-align: center; background: #f4f4f4; }
+    form { margin: 20px; }
+    ul { list-style: none; padding: 0; }
+    li { background: #fff; padding: 10px; margin: 5px auto; width: 250px; border-radius: 8px; }
+    button { margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <h1>📝 To-Do List</h1>
+
+  <form action="/add" method="POST">
+    <input type="text" name="newTask" placeholder="Enter new task" required>
+    <button type="submit">Add</button>
+  </form>
+
+  <ul>
+    <% taskList.forEach((task, index) => { %>
+      <li>
+        <%= task %>
+        <form action="/delete" method="POST" style="display:inline;">
+          <input type="hidden" name="index" value="<%= index %>">
+          <button type="submit">❌</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
